@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!ELEMENT BIBLIOTECA (LIBRO+)>
+
+    <!ELEMENT LIBRO (TITULO, AUTOR*, ANYO?, EDITORIAL?)>
+    <!ATTLIST LIBRO COD CDATA #REQUIRED>
+    
+        <!ELEMENT AUTOR (#PCDATA)>
+        <!ELEMENT TITULO (#PCDATA)>
+        <!ELEMENT EDITORIAL (#PCDATA)>
+        <!ELEMENT ANYO (#PCDATA)>
