@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!ELEMENT Pedidos (pedido+)>
+
+<!ELEMENT pedido (envio,albaran,articulos)>
+
+<!ATTLIST pedido num_pedido ID #REQUIRED>
+
+
+<!-- Datos del envio -->
+<!ELEMENT envio (responsable, direccion+)>
+
+<!ELEMENT responsable (#PCDATA)>
+
+<!ELEMENT direccion (calle, num, cp, ciudad)>
+<!ATTLIST direccion cod_sucursal NMTOKEN #REQUIRED>
+<!ATTLIST direccion dpto (Gestión|Almacén|Única) "Única">
+
+<!ELEMENT calle (#PCDATA)>
+<!ELEMENT num (#PCDATA)>
+<!ELEMENT cp (#PCDATA)>
+<!ELEMENT ciudad (#PCDATA)>
+
+
+<!-- Datos del albarán -->
+<!ELEMENT albaran (fecha_pedido,observaciones_pedido,revision?)>
+
+<!ELEMENT fecha_pedido EMPTY>
+<!ATTLIST fecha_pedido dia CDATA #REQUIRED >
+<!ATTLIST fecha_pedido mes (enero|febrero|marzo|abril|mayo|junio|julio|agosto|septiembre|octubre|noviembre|diciembre) #REQUIRED >
+<!ATTLIST fecha_pedido año CDATA #REQUIRED >
+
+<!ELEMENT observaciones_pedido (tipo?)>
+<!ELEMENT tipo EMPTY>
+<!ATTLIST tipo nota (urgente | incompleto) #IMPLIED >
+
+<!ELEMENT revision EMPTY>
+<!ATTLIST revision dias CDATA #REQUIRED >
+
+
+<!-- Datos de los articulos -->
+<!ELEMENT articulos (articulo*)>
+<!ELEMENT articulo (unidades,precio,observaciones)>
+<!ATTLIST articulo cod_art NMTOKEN #REQUIRED>
+<!ELEMENT unidades EMPTY>
+<!ATTLIST unidades ud CDATA "">
+<!ELEMENT precio EMPTY>
+<!ATTLIST precio pvp CDATA "">
+<!ELEMENT observaciones (#PCDATA)>
+
+
+
+<!-- DUDAS:
+En el ejercicio se piden unas restricciones que con DTD no sé como hacerlas (creo que no se puede), pero que con Schema si que se podría,
+Desconozco si se puede hacer que el xml se valide usando los dos métodos, por un lado el Schema (para los campos que requieran mas restricciones) y por otro lado el DTD.
+
+He dejado el DTD puesto que en el ejercicio se pide utilizar un DTD externo.
+
+Los campos que creo que se deberían hacer con Schema:
+- Código del pedido: He optado por usar el tipo de atributo ID, dado que obliga a que empiece por una letra,
+pero permite que continue con letras y no puedo restringir la longitud a 8 caracteres en total.
+- Plazo de revisión: Indica que tiene que ser un periodo de tiempo dependiendo del precio,
+supongo que de alguna manera habria que referenciar el precio final del pedido con la fecha de pedido y calcular los días de revisión
+- Código del articulo: Indica que tiene que tener un formato especifico, que entiendo que habria que validarlo con una expresión regular.
+
+-->

@@ -1,0 +1,18 @@
+<?xml version= "1.0" encoding="UTF-8"?>
+
+<Pedidos xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:schemaLocation="pedidos.xsd">
+    <!-- Hoja de pedido -->
+    <pedido num_pedido="B1234567">
+
+        <!-- Datos del envio -->
+        <envio>
+            <responsable>Federico Grillo</responsable>
+            <direccion cod_sucursal="F12" dpto="Única">
+                <calle>la calle de envio</calle>
+                <num>3</num>
+                <cp>29640</cp>
+                <ciudad>Fuenjirola</ciudad>
+            </direccion>
+        </envio>
+    </pedido>
+</Pedidos>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+    <xs:annotation>
+
+        <xs:documentation xml:lang="es-ES">
+            <fecha>14/04/2021</fecha>
+            <autor>Víctor Visús García</autor>
+            <validacion>https://www.freeformatter.com/xml-validator-xsd.html</validacion>
+            
+        </xs:documentation>
+
+
+    </xs:annotation>
+
+    <!-- elemento raíz -->
+    <xs:element name="Pedidos">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="pedido">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="envio">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="responsable" type="xs:string"></xs:element>
+                                        <xs:element name="direccion">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="calle" type="xs:string"/>
+                                                    <xs:element name="num" type="xs:integer"/>
+                                                    <xs:element name="cp" type="xs:integer"/>
+                                                    <xs:element name="ciudad" type="xs:string"/>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+
+                            </xs:element>
+                        </xs:sequence>
+
+
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+        
+
+
+</xs:schema>
