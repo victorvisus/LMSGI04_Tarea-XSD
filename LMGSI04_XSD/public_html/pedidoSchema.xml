@@ -1,18 +1,30 @@
 <?xml version= "1.0" encoding="UTF-8"?>
 
-<Pedidos xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:schemaLocation="pedidos.xsd">
+<Pedidos xmlns:xs="http://www.w3.org/2001/XMLSchema-instance"
+         xs:noNamespaceSchemaLocation="pedidos.xsd">
+
     <!-- Hoja de pedido -->
     <pedido num_pedido="B1234567">
-
         <!-- Datos del envio -->
         <envio>
             <responsable>Federico Grillo</responsable>
-            <direccion cod_sucursal="F12" dpto="Única">
+            <direccion cod_sucursal="F12" dpto="Unica">
                 <calle>la calle de envio</calle>
                 <num>3</num>
                 <cp>29640</cp>
                 <ciudad>Fuenjirola</ciudad>
             </direccion>
         </envio>
+
+        <!-- Datos del albarán -->
+        <albaran>
+            <fecha_pedido dia="---11" mes="enero" anyo="2021"/>
+            <observaciones_pedido>
+                <tipo nota="urgente"/>
+            </observaciones_pedido>
+            <revision dias="5"/>
+        </albaran>
+
+        
     </pedido>
 </Pedidos>
