@@ -1,8 +1,7 @@
 <?xml version= "1.0" encoding="UTF-8" standalone="no" ?>
 
-<!DOCTYPE Pedidos SYSTEM "pedidos.dtd">
-	
-<Pedidos>
+<Pedidos xmlns:xs="http://www.w3.org/2001/XMLSchema-instance"
+         xs:noNamespaceSchemaLocation="pedidos.xsd">
 <!-- Hoja de pedido -->
     <pedido num_pedido="B1234567">
 
@@ -19,24 +18,23 @@
 
         <!-- Datos del albarán -->
         <albaran>
-            <fecha_pedido dia="20" mes="enero" año="2021"/>
+            <fecha_pedido dia="---20" mes="enero" anyo="2021"/>
             <observaciones_pedido>
                 <tipo nota="urgente"/>
             </observaciones_pedido>
             <revision dias="15"/>
-            <!-- Datos de la sucursal que realiza el pedido -->
         </albaran>
 
         <!-- Datos de los articulos -->
         <articulos>
             <articulo cod_art="FFF-555">
-                <unidades ud="2"/>
-                <precio pvp="20"/>
+                <unidades>2</unidades>
+                <precio>20</precio>
                 <observaciones>Lorem ipsum aquismet y algo mas que poner</observaciones>
             </articulo>
             <articulo cod_art="FHS-563">
-                <unidades ud="1"/>
-                <precio pvp="100"/>
+                <unidades>1</unidades>
+                <precio>100</precio>
                 <observaciones>Lorem ipsum aquismet y algo mas que poner</observaciones>
             </articulo>
         </articulos>
@@ -66,7 +64,7 @@
 
         <!-- Datos del albarán -->
         <albaran>
-            <fecha_pedido dia="10" mes="enero" año="2021"/>
+            <fecha_pedido dia="---10" mes="enero" anyo="2021"/>
             <observaciones_pedido>
                 <tipo nota="incompleto"/>
             </observaciones_pedido>
@@ -76,8 +74,8 @@
         <!-- Datos de los articulos -->
         <articulos>
             <articulo cod_art="KEJ-658">
-                <unidades ud="1"/>
-                <precio pvp="200"/>
+                <unidades>1</unidades>
+                <precio>200</precio>
                 <observaciones>Lorem ipsum aquismet y algo mas que poner</observaciones>
             </articulo>
         </articulos>

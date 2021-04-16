@@ -8,7 +8,7 @@
         <!-- Datos del envio -->
         <envio>
             <responsable>Federico Grillo</responsable>
-            <direccion cod_sucursal="F12" dpto="Unica">
+            <direccion cod_sucursal="F12" dpto="Única">
                 <calle>la calle de envio</calle>
                 <num>3</num>
                 <cp>29640</cp>
@@ -25,6 +25,14 @@
             <revision dias="5"/>
         </albaran>
 
-        
+        <!-- Datos de los articulos -->
+        <articulos>
+            <articulo cod_art="FFF-555">
+                <unidades>2</unidades>
+                <precio>20</precio>
+                <observaciones>Lorem ipsum aquismet y algo mas que poner</observaciones>
+            </articulo>
+        </articulos>
+
     </pedido>
 </Pedidos>
