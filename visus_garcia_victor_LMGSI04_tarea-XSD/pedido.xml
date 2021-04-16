@@ -1,0 +1,86 @@
+<?xml version= "1.0" encoding="UTF-8" standalone="no" ?>
+
+<Pedidos xmlns:xs="http://www.w3.org/2001/XMLSchema-instance"
+         xs:noNamespaceSchemaLocation="pedidos.xsd">
+<!-- Hoja de pedido -->
+    <pedido num_pedido="B1234567">
+
+        <!-- Datos del envio -->
+        <envio>
+            <responsable>Federico Grillo</responsable>
+            <direccion cod_sucursal="F12" dpto="Única">
+                <calle>la calle de envio</calle>
+                <num>3</num>
+                <cp>29640</cp>
+                <ciudad>Fuenjirola</ciudad>
+            </direccion>
+        </envio>
+
+        <!-- Datos del albarán -->
+        <albaran>
+            <fecha_pedido dia="---20" mes="enero" anyo="2021"/>
+            <observaciones_pedido>
+                <tipo nota="urgente"/>
+            </observaciones_pedido>
+            <revision dias="15"/>
+        </albaran>
+
+        <!-- Datos de los articulos -->
+        <articulos>
+            <articulo cod_art="FFF-555">
+                <unidades>2</unidades>
+                <precio>20</precio>
+                <observaciones>Lorem ipsum aquismet y algo mas que poner</observaciones>
+            </articulo>
+            <articulo cod_art="FHS-563">
+                <unidades>1</unidades>
+                <precio>100</precio>
+                <observaciones>Lorem ipsum aquismet y algo mas que poner</observaciones>
+            </articulo>
+        </articulos>
+
+    </pedido>
+<!-- FIN Hoja de pedido -->
+
+<!-- Hoja de pedido -->
+    <pedido num_pedido="G1234567">
+
+        <!-- Datos del envio -->
+        <envio>
+            <responsable>Antonio Gracia</responsable>
+            <direccion cod_sucursal="M06" dpto="Gestión">
+                <calle>la calle de envio albaran</calle>
+                <num>3</num>
+                <cp>28345</cp>
+                <ciudad>Madrid</ciudad>
+            </direccion>
+            <direccion cod_sucursal="M06" dpto="Almacén">
+                <calle>la calle de envio articulos</calle>
+                <num>6</num>
+                <cp>28124</cp>
+                <ciudad>Madrid</ciudad>
+            </direccion>
+        </envio>
+
+        <!-- Datos del albarán -->
+        <albaran>
+            <fecha_pedido dia="---10" mes="enero" anyo="2021"/>
+            <observaciones_pedido>
+                <tipo nota="incompleto"/>
+            </observaciones_pedido>
+
+        </albaran>
+
+        <!-- Datos de los articulos -->
+        <articulos>
+            <articulo cod_art="KEJ-658">
+                <unidades>1</unidades>
+                <precio>200</precio>
+                <observaciones>Lorem ipsum aquismet y algo mas que poner</observaciones>
+            </articulo>
+        </articulos>
+
+    </pedido>
+<!-- FIN Hoja de pedido -->
+
+</Pedidos>

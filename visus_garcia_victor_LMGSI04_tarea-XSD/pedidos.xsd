@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+    <xs:annotation>
+        <xs:documentation xml:lang="es-ES">
+            <fecha>14/04/2021</fecha>
+            <autor>Víctor Visús García</autor>
+            <validacion>https://www.freeformatter.com/xml-validator-xsd.html</validacion>
+            <utilidad>
+                Este documento establece las normas que debe seguir el XML donde se almacenan los pedidos de la empresa.
+            </utilidad>
+        </xs:documentation>
+    </xs:annotation>
+
+
+    <!-- ***************************************************** ELEMENTOS SIMPLES -->
+    <xs:annotation>
+        <xs:documentation xml:lang="es-ES">
+            Declaro los elementos simples.
+        </xs:documentation>
+    </xs:annotation>
+    <!-- elemento simple Sección ENVÍO -->
+    <xs:element name="responsable" type="texto60" />
+    <xs:element name="calle" type="texto60"/>
+    <xs:element name="num" type="xs:positiveInteger"/>
+    <xs:element name="cp" type="xs:positiveInteger"/>
+    <xs:element name="ciudad" type="texto60"/>
+
+    <!-- elemento simple Sección ALBARÁN -->
+    <xs:element name="fecha_pedido">
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:annotation>
+                    <xs:appinfo>
+                        <texto_de_ayuda>Se debe de introducir el el día con formato ---DD, el mes que corresponda, en texto y todo minúsculas, y el año, con 4 dígitos.</texto_de_ayuda>
+                    </xs:appinfo>
+                </xs:annotation>
+                <xs:extension base="xs:string">
+                    <xs:attribute ref="dia" />
+                    <xs:attribute ref="mes" />
+                    <xs:attribute ref="anyo" />
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="tipo" >
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:annotation>
+                    <xs:appinfo>
+                        <texto_de_ayuda>
+                            <p>Los valores permitidos para el atributo "nota" son:</p>
+                            <ul>
+                                <li>urgente</li>
+                                <li>incompleto</li>
+                            </ul>
+                        </texto_de_ayuda>
+                    </xs:appinfo>
+                </xs:annotation>
+                <xs:extension base="xs:string">
+                    <!-- Puedo o no aparecer el atributo -->
+                    <xs:attribute ref="nota"/>
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="revision">
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:string">
+                    <xs:attribute ref="dias" />
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- elemento simple Sección ARTÍCULOS -->
+    <xs:element name="unidades" type="xs:positiveInteger" />
+    <xs:element name="precio" type="xs:decimal" />
+    <xs:element name="observaciones" type="texto60" />
+
+    <!-- ************************************************************ ATRIBUTOS -->
+    <xs:annotation>
+        <xs:documentation xml:lang="es-ES">
+            Declaro los atributos que van a tener determinados elementos.
+        </xs:documentation>
+    </xs:annotation>
+    <!-- atributo etiqueta root -->
+    <xs:attribute name="num_pedido" >
+        <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <!-- Indica que primero tiene que ir una letra [A-B] y después 7 dígitos \d{7} -->
+                <xs:pattern value="[A-Z]\d{7}" />
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:attribute>
+
+    <!-- atributos Sección ENVÍO -->
+    <xs:attribute name="cod_sucursal">
+        <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <!-- Indica que primero tiene que ir una letra [A-B] y después 2 dígitos [0-9]{2} -->
+                <xs:pattern value="[A-Z][0-9]{2}" />
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:attribute>
+
+    <xs:attribute name="dpto">
+        <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <!-- El atributo dpto solo acepta los valores indicados -->
+                <xs:enumeration value="Única" />
+                <xs:enumeration value="Almacén" />
+                <xs:enumeration value="Gestión" />
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:attribute>
+
+    <!-- atributos Sección ALBARÁN -->
+    <xs:attribute name="dia" type="xs:gDay" />
+    <xs:attribute name="mes">
+        <xs:simpleType>
+            <xs:restriction  base="xs:string">
+                <xs:enumeration value="enero" />
+                <xs:enumeration value="febrero" />
+                <xs:enumeration value="marzo" />
+                <xs:enumeration value="abril" />
+                <xs:enumeration value="mayo" />
+                <xs:enumeration value="junio" />
+                <xs:enumeration value="julio" />
+                <xs:enumeration value="agosto" />
+                <xs:enumeration value="septiembre" />
+                <xs:enumeration value="octubre" />
+                <xs:enumeration value="noviembre" />
+                <xs:enumeration value="diciembre" />
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="anyo" type="xs:gYear" />
+
+    <xs:attribute name="nota">
+        <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:enumeration value="urgente" />
+                <xs:enumeration value="incompleto" />
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:attribute>
+
+    <xs:attribute name="dias">
+        <xs:simpleType>
+            <xs:restriction base="xs:positiveInteger">
+                <xs:maxInclusive value="15" />
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:attribute>
+
+    <!-- atributos Sección ARTICULOS -->
+    <xs:attribute name="cod_art">
+        <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <!-- Indica que primero tiene que ir tres letras [A-B]{3}, después un guión y 3 dígitos [0-9]{3} -->
+                <xs:pattern value="[A-Z]{3}\-[0-9]{3}" />
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:attribute>
+
+
+    <!-- ************************************************** TIPOS PERSONALIZADOS -->
+    <xs:annotation>
+        <xs:documentation xml:lang="es-ES">
+            Tipos de datos personalizados para el sistema.
+        </xs:documentation>
+    </xs:annotation>
+    <!-- tipos de datos definidos por el usuario -->
+    <xs:simpleType name="texto60">
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="60" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="datosDireccion">
+        <xs:annotation>
+            <xs:appinfo>
+                <texto_de_ayuda>
+                    <p>Los valores permitidos para el atributo "dpto" son:</p>
+                    <ul>
+                        <li>Única</li>
+                        <li>Gestión</li>
+                        <li>Almacén</li>
+                    </ul>
+                </texto_de_ayuda>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element ref="calle" />
+            <xs:element ref="num" />
+            <xs:element ref="cp" />
+            <xs:element ref="ciudad" />
+        </xs:sequence>
+        <xs:attribute ref="cod_sucursal" use="required" />
+        <xs:attribute ref="dpto" use="required" />
+    </xs:complexType>
+
+
+    <!-- ************************************************** ELEMENTOS COMPLEJOS -->
+    <xs:annotation>
+        <xs:documentation xml:lang="es-ES">
+            Declaro los elementos complejos.
+        </xs:documentation>
+    </xs:annotation>
+    
+    <!-- elemento complejos Sección ENVÍO -->
+    <xs:element name="envio">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="responsable" />
+                <xs:element name="direccion" type="datosDireccion" minOccurs="1" maxOccurs="2" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- elemento complejos Sección ALBARÁN -->
+    <xs:element name="observaciones_pedido">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="tipo" minOccurs="0" maxOccurs="1" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="albaran">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="fecha_pedido" />
+                <xs:element ref="observaciones_pedido" />
+                <xs:element ref="revision" minOccurs="0" maxOccurs="1" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- elemento complejos Sección ARTICULOS -->
+    <xs:element name="articulo">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="unidades" />
+                <xs:element ref="precio" />
+                <xs:element ref="observaciones" />
+            </xs:sequence>
+            <xs:attribute ref="cod_art" use="required" />
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="articulos" >
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="articulo" minOccurs="1" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+
+    <!-- elemento complejos Sección PEDIDO -->
+    <xs:element name="pedido">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="envio" />
+                <xs:element ref="albaran" />
+                <xs:element ref="articulos" />
+            </xs:sequence>
+            <xs:attribute ref="num_pedido" use="required" />
+        </xs:complexType>
+    </xs:element>
+
+
+    <!-- elemento complejos ROOT -->
+    <xs:element name="Pedidos">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="pedido" minOccurs="1" maxOccurs="unbounded" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+        
+
+
+</xs:schema>
